@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Image Slider</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .slider {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .slider img {
+            width: 400px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: 0.5s ease;
+            animation: fade 0.5s ease-in-out;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+            background: #667eea;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #5a67d8;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0.5;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="slider">
+        <img id="slide">
+
+        <br><br>
+
+        <button onclick="prev()">⬅ Prev</button>
+        <button onclick="next()">Next ➡</button>
+    </div>
+
+    <script>
+        const images = [
+            "img/images.jpeg",
+            "img/images1.jpeg",
+            "img/images2.jpeg",
+            "img/images3.jpeg",
+            "img/images4.jpeg",
+            "img/images5.jpg",
+            "img/images6.jpeg",
+            "img/images7.jpeg",
+            "img/images9.jpeg",
+            "img/images10.jpeg"
+        ];
+
+        let index = 0;
+
+        function showSlide() {
+            document.getElementById("slide").src = images[index];
+        }
+
+        function next() {
+            index = (index + 1) % images.length;
+            showSlide();
+        }
+
+        function prev() {
+            index = (index - 1 + images.length) % images.length;
+            showSlide();
+        }
+
+        showSlide();
+
+        setInterval(next, 3000);
+    </script>
+
+</body>
+
+</html>
